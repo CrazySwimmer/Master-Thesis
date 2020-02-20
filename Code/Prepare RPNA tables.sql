@@ -18,8 +18,7 @@ DECLARE @database_name nvarchar(128) = 'MASTER_THESIS';
 
 
 DECLARE @year int = CONVERT(int,RIGHT(@table_name,4));
-DECLARE @qry nvarchar(max);
-SET @qry = N'
+DECLARE @qry nvarchar(max) = N'
 USE '+QUOTENAME(@database_name)+N';
 GO
 

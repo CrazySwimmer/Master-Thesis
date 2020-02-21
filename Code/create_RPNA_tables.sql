@@ -72,7 +72,7 @@ BEGIN
 	) ON [PRIMARY]
 
 	DECLARE @msg nvarchar(max) = N'The table dbo.RPNA_DJ_EQ was created successfully in the database '+DB_NAME();
-	RAISERROR(@msg,10,0)
+	RAISERROR(@msg,10,0) WITH NOWAIT
 END
 GO
 
@@ -122,6 +122,6 @@ BEGIN
 	) ON [PRIMARY]
 
 	DECLARE @msg nvarchar(max) = N'The table dbo.RPNA_DJ_GM was created successfully in the database '+DB_NAME();
-	RAISERROR(@msg,10,0)
+	RAISERROR(@msg,10,0) WITH NOWAIT
 END
 GO

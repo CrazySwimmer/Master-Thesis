@@ -1,47 +1,167 @@
 /*
-	Generate script to prepare RPNA tables.
-	The generated script must be copied to another query window and run from there.
+Prepare main RPNA tables after a fresh import.
 
-	Inputs:
-		@table_name - Name of table to be prepared (i.e. 'DJ_EQ_20XX' or 'DJ_GM_20XX').
-		@schema_name - Schema name of the table.
-		@database_name - Name of the database containing the table.
+This script assumes...
 
 
-	Danilo Zocco
-	2020-02-20
+Danilo Zocco
+2020-02-20
 */
-
--- Inputs
-DECLARE @table_name nvarchar(128) = 'DJ_EQ_20XX'; -- Exclude schema, must end with 4-digit year
-DECLARE @schema_name nvarchar(128) = 'dbo';
-DECLARE @database_name nvarchar(128) = 'MASTER_THESIS';
-
-
-
-DECLARE @year int = CONVERT(int,RIGHT(@table_name,4));
-DECLARE @qry nvarchar(max) = N'
-USE '+QUOTENAME(@database_name)+N';
+USE [MASTER_THESIS]
 GO
 
-ALTER TABLE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' DROP COLUMN [RPNA_DATE_UTC], [RPNA_TIME_UTC];
-ALTER TABLE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' ADD [TIMESTAMP_EST] datetimeoffset(3) NULL;
+IF OBJECT_ID(N'dbo.RPNA_DJ_EQ',N'U') IS NULL OR OBJECT_ID(N'dbo.RPNA_DJ_GM',N'U') IS NULL
+BEGIN
+	DECLARE @msg nvarchar(max) =
+		N'You first need to create the main tables.'
+		+ NCHAR(13) + NCHAR(10)
+		+ N'This can be done by running "create_RPNA_tables.sql".'
+	RAISERROR(@msg,16,1) WITH NOWAIT
+	RETURN
+END
+
+DECLARE @qry nvarchar(max);
+DECLARE @table_name nvarchar(128);
+DECLARE @database_name nvarchar(128) = DB_NAME();
+
+DECLARE current_table CURSOR
+LOCAL FAST_FORWARD FOR
+	SELECT TOP(1) [name]
+	FROM sys.tables
+	WHERE [name] LIKE N'DJ_GLOBAL_MACRO_20%'
+		OR [name] LIKE N'DJ_EQUITIES_20%';
+
+OPEN current_table;
+FETCH NEXT FROM current_table INTO @table_name;
+
+WHILE @@FETCH_STATUS=0
+BEGIN
+	SET @qry =
+	N'INSERT INTO '+QUOTENAME(@database_name)+N'.[dbo].[RPNA_DJ_EQ]
+        ([TIMESTAMP_EST]
+        ,[RP_ENTITY_ID]
+        ,[ENTITY_TYPE]
+        ,[ENTITY_NAME]
+        ,[POSITION_NAME]
+        ,[RP_POSITION_ID]
+        ,[COUNTRY_CODE]
+        ,[RELEVANCE]
+        ,[TOPIC]
+        ,[GROUP]
+        ,[TYPE]
+        ,[SUB_TYPE]
+        ,[PROPERTY]
+        ,[EVALUATION_METHOD]
+        ,[MATURITY]
+        ,[CATEGORY]
+        ,[ESS]
+        ,[AES]
+        ,[AEV]
+        ,[ENS]
+        ,[ENS_SIMILARITY_GAP]
+        ,[ENS_KEY]
+        ,[ENS_ELAPSED]
+        ,[G_ENS]
+        ,[G_ENS_SIMILARITY_GAP]
+        ,[G_ENS_KEY]
+        ,[G_ENS_ELAPSED]
+        ,[EVENT_SIMILARITY_KEY]
+        ,[NEWS_TYPE]
+        ,[SOURCE]
+		,[RP_STORY_ID]
+        ,[RP_STORY_EVENT_INDEX]
+        ,[RP_STORY_EVENT_COUNT]
+        ,[PRODUCT_KEY]'
+	+ CASE
+		WHEN @table_name LIKE N'DJ_EQUITIES_20%' THEN N'
+        ,[COMPANY]
+        ,[ISIN]
+        ,[CSS]
+        ,[NIP]
+        ,[PEQ]
+        ,[BEE]
+        ,[BMQ]
+        ,[BAM]
+        ,[BCA]
+        ,[BER]
+        ,[ANL_CHG]
+        ,[MCQ]'
+		ELSE N'' END
+		+N')
+	SELECT
+		CONVERT(datetimeoffset(3),[TIMESTAMP_UTC]) AT TIME ZONE ''Eastern Standard Time''
+		,[RP_ENTITY_ID]
+		,[ENTITY_TYPE]
+		,[ENTITY_NAME]
+		,[POSITION_NAME]
+		,[RP_POSITION_ID]
+		,[COUNTRY_CODE]
+		,[RELEVANCE]
+		,[TOPIC]
+		,[GROUP]
+		,[TYPE]
+		,[SUB_TYPE]
+		,[PROPERTY]
+		,[EVALUATION_METHOD]
+		,[MATURITY]
+		,[CATEGORY]
+		,[ESS]
+		,[AES]
+		,[AEV]
+		,[ENS]
+		,[ENS_SIMILARITY_GAP]
+		,[ENS_KEY]
+		,[ENS_ELAPSED]
+		,[G_ENS]
+		,[G_ENS_SIMILARITY_GAP]
+		,[G_ENS_KEY]
+		,[G_ENS_ELAPSED]
+		,[EVENT_SIMILARITY_KEY]
+		,[NEWS_TYPE]
+		,[SOURCE]
+		,[RP_STORY_ID]
+		,[RP_STORY_EVENT_INDEX]
+		,[RP_STORY_EVENT_COUNT]
+		,[PRODUCT_KEY]'
+	+ CASE
+		WHEN @table_name LIKE N'DJ_EQUITIES_20%' THEN N'
+        ,[COMPANY]
+        ,[ISIN]
+        ,[CSS]
+        ,[NIP]
+        ,[PEQ]
+        ,[BEE]
+        ,[BMQ]
+        ,[BAM]
+        ,[BCA]
+        ,[BER]
+        ,[ANL_CHG]
+        ,[MCQ]'
+		ELSE N'' END +N'
+	FROM '+QUOTENAME(@database_name)+N'.[dbo].'+QUOTENAME(@table_name)+N';
+	
+	DROP TABLE dbo.'+QUOTENAME(@table_name)+N';
+	CHECKPOINT';
+
+	PRINT @qry
+	--EXECUTE sp_executesql @qry;
+
+	FETCH NEXT FROM current_table INTO @table_name;
+END
+
+CLOSE current_table;
+DEALLOCATE current_table;
 GO
 
-UPDATE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' SET [TIMESTAMP_EST] = [TIMESTAMP_UTC] AT TIME ZONE ''Eastern Standard Time'';
-CHECKPOINT;
-GO
+--ALTER TABLE dbo.RPNA_DJ_EQ ADD CONSTRAINT [PK_RPNA_DJ_EQ] PRIMARY KEY CLUSTERED ([RP_ENTITY_ID] ASC, [RP_STORY_ID] ASC);
+--CHECKPOINT
+--CREATE NONCLUSTERED INDEX [IX_RPNA_DJ_EQ] ON dbo.RPNA_DJ_EQ ([TIMESTAMP_EST] ASC);
+--CHECKPOINT
+--GO
 
-ALTER TABLE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' DROP COLUMN [TIMESTAMP_UTC];
-ALTER TABLE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' ALTER COLUMN [TIMESTAMP_EST] datetimeoffset(3) NOT NULL; -- Set column to NOT NULL
-GO
-
-ALTER TABLE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' WITH CHECK ADD CONSTRAINT [CK_DJ_EQ_'+CONVERT(nvarchar(max),@year)+N'_DATE] CHECK (([TIMESTAMP_EST] >= '''+CONVERT(nvarchar(max),@year)+N'-01-01'' AND [TIMESTAMP_EST] < '''+CONVERT(nvarchar(max),@year+1)+N'-01-01''));
-ALTER TABLE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' CHECK CONSTRAINT [CK_DJ_EQ_'+CONVERT(nvarchar(max),@year)+N'_DATE];
-GO
-
-ALTER TABLE '+@schema_name+N'.'+QUOTENAME(@table_name)+N' ADD CONSTRAINT [PK_DJ_EQ_'+CONVERT(nvarchar(max),@year)+N'] PRIMARY KEY CLUSTERED ([RP_ENTITY_ID] ASC, [RP_STORY_ID] ASC);
-CHECKPOINT;
-GO';
-
-RAISERROR(@qry,10,0) WITH NOWAIT;
+--ALTER TABLE dbo.RPNA_DJ_GM ADD CONSTRAINT [PK_RPNA_DJ_GM] PRIMARY KEY CLUSTERED ([RP_ENTITY_ID] ASC, [RP_STORY_ID] ASC);
+--CHECKPOINT
+--CREATE NONCLUSTERED INDEX [IX_RPNA_DJ_GM] ON dbo.RPNA_DJ_GM ([TIMESTAMP_EST] ASC);
+--CHECKPOINT
+--CHECKPOINT;
+--GO

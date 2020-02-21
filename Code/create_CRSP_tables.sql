@@ -26,7 +26,7 @@ BEGIN
 		[NCUSIP] [char](8) NULL,
 		[TICKER] [varchar](5) NULL,
 		[COMNAM] [nvarchar](32) NOT NULL,
-		[HEXCD] [tinyint] NOT NULL,
+		[HEXCD] [smallint] NOT NULL,
 		[EXCHCD] [smallint] NOT NULL,
 		[SICCD] [smallint] NOT NULL,
 		[SHRCD] [tinyint] NOT NULL,

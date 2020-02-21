@@ -64,7 +64,7 @@ BEGIN
 		[BER] [tinyint] NOT NULL,
 		[ANL_CHG] [tinyint] NOT NULL,
 		[MCQ] [tinyint] NOT NULL
-);
+	);
 
 	DECLARE @msg nvarchar(max) = N'The table dbo.RPNA_DJ_EQ was created successfully in the database '+DB_NAME();
 	RAISERROR(@msg,10,0) WITH NOWAIT
@@ -109,7 +109,7 @@ BEGIN
 		[RP_STORY_EVENT_INDEX] [smallint] NOT NULL,
 		[RP_STORY_EVENT_COUNT] [smallint] NOT NULL,
 		[PRODUCT_KEY] [char](5) NOT NULL
-);
+)	;
 
 	DECLARE @msg nvarchar(max) = N'The table dbo.RPNA_DJ_GM was created successfully in the database '+DB_NAME();
 	RAISERROR(@msg,10,0) WITH NOWAIT

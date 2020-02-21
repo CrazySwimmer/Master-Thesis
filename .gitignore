@@ -1,5 +1,9 @@
 
 *.pdf
 *.bak
-*.ssmssqlproj
 *.xlsx
+
+# SSMS solutions
+*.ssmssqlproj
+*.ssmssln
+*.vs

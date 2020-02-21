@@ -37,7 +37,7 @@ FETCH NEXT FROM current_table INTO @table_name;
 WHILE @@FETCH_STATUS=0
 BEGIN
 	SET @qry =
-	N'INSERT INTO '+QUOTENAME(@database_name)+N'.[dbo].[RPNA_DJ_EQ]
+	N'INSERT INTO '+QUOTENAME(@database_name)+N'.[dbo].[RPNA_DJ_'+CASE WHEN @table_name LIKE N'DJ_EQUITIES_20%' THEN N'EQ' ELSE N'GM' END+N']
         ([TIMESTAMP_EST]
         ,[RP_ENTITY_ID]
         ,[ENTITY_TYPE]
@@ -140,11 +140,12 @@ BEGIN
 		ELSE N'' END +N'
 	FROM '+QUOTENAME(@database_name)+N'.[dbo].'+QUOTENAME(@table_name)+N';
 	
-	DROP TABLE dbo.'+QUOTENAME(@table_name)+N';
-	CHECKPOINT';
+	DROP TABLE dbo.'+QUOTENAME(@table_name)+N';';
 
 	PRINT @qry
 	--EXECUTE sp_executesql @qry;
+	--CHECKPOINT;
+	--WAITFOR DELAY '00:00:01';
 
 	FETCH NEXT FROM current_table INTO @table_name;
 END

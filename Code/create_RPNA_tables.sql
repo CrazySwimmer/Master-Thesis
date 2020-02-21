@@ -63,13 +63,8 @@ BEGIN
 		[BCA] [tinyint] NOT NULL,
 		[BER] [tinyint] NOT NULL,
 		[ANL_CHG] [tinyint] NOT NULL,
-		[MCQ] [tinyint] NOT NULL,
-	 CONSTRAINT [PK_DJ_EQ] PRIMARY KEY CLUSTERED 
-	(
-		[RP_ENTITY_ID] ASC,
-		[RP_STORY_ID] ASC
-	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-	) ON [PRIMARY]
+		[MCQ] [tinyint] NOT NULL
+);
 
 	DECLARE @msg nvarchar(max) = N'The table dbo.RPNA_DJ_EQ was created successfully in the database '+DB_NAME();
 	RAISERROR(@msg,10,0) WITH NOWAIT
@@ -113,13 +108,8 @@ BEGIN
 		[RP_STORY_ID] [varchar](32) NOT NULL,
 		[RP_STORY_EVENT_INDEX] [smallint] NOT NULL,
 		[RP_STORY_EVENT_COUNT] [smallint] NOT NULL,
-		[PRODUCT_KEY] [char](5) NOT NULL,
-	 CONSTRAINT [PK_DJ_GM] PRIMARY KEY CLUSTERED 
-	(
-		[RP_ENTITY_ID] ASC,
-		[RP_STORY_ID] ASC
-	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-	) ON [PRIMARY]
+		[PRODUCT_KEY] [char](5) NOT NULL
+);
 
 	DECLARE @msg nvarchar(max) = N'The table dbo.RPNA_DJ_GM was created successfully in the database '+DB_NAME();
 	RAISERROR(@msg,10,0) WITH NOWAIT

@@ -1,0 +1,138 @@
+In this chapter, we will build (derive?) a framework based on the three strands of literature mentioned earlier. This framework will provide the foundations that will allow us to derive the main assumptions that we will test in chapter \ref{chap:methodology}.
+
+First, we will have a look at the filtering function of information providers, what information they choose to report and the utility of delegated information choice.
+Then, we will look at information choice from the perspective of agents who try to maximize their own utility in the stock markets.
+Finally, we will use observations from the first two topics and try to give a possible explanation for the comovement of asset prices and their returns.
+
+
+\section{Editorial Function and Delegated Information Choice}
+
+\subsection{\textcite{Nimark2019}}
+
+An investor's portfolio is constantly impacted by a large number of events happening every day. However, it is not economically practical nor technically feasible to monitor each and every one of these events. Therefore, news media... \todo{Attention paraphrase}
+
+\textcite{Nimark2019} show a series of stylized facts/relevant features about the editorial role of news media and their behavior. Also, they develop a formal framework that replicates such behaviors and are able to prove some facts...
+By studying the editorial choices of various newspapers around two major events (the terrorist attacks of the 9/11 and the bankruptcy of Lehman Brothers), they are able to show that news media outlets that focus on various topics ex-ante shift their focus to major events when they happen, hence creating homogeneity among the outlets.
+
+Stylized facts
+\begin{itemize}
+    \item They estimate a Latent Dirichlet Allocation topic model using circa 15'000 articles, from 17 U.S. newspapers. They study a 90-day window around two major events: the 9/11 terrorist attacks in 2001 and the bankruptcy of Lehman Brothers in 2008.
+    \item They exclude news coming from wire services as they are targeted towards other information providers
+    \item Different newspapers (outlets) specialize in different topics (example on page 161)
+    \item The coverage allocated to various topics, in terms of total news coverage, changes over time depending on what happened (example on page 161)
+    \item Major events cause general focus of ex-ante non-similar news outlets to shift. Hence making coverage more homogeneous (example on page 161)
+\end{itemize}
+
+Formal framework
+\begin{itemize}
+    \item Framework is built to reflect that agents' information choice consists of choosing which information provider to follow rather than what variable or event to monitor/get information about (this is the underlying idea, just as for this project). (vs. rest of literature where agents choose what to learn about (signal) or info content (precision of signal ie. covariance matrix of signal))
+    \item They prove in their Proposition 1 that, when delegating information choice to an entity that make state-dependent reporting decisions, rather than choosing by herself what to get information about, an agent can always reduce her entropy (uncertainty about state of the world or other variables of interest). This is due to the fact that an agent is limited in the number of articles she can read. It is therefore optimal to delegate information choice to an entity that does state-dependant reporting.
+    \item They show in their Porposition 2 that, by the state-dependent editorial process, information is communicated not only by the content of a story, but also by the reporting decision. When an outlet allocate much space to only common events, a reader can infer that no important event happened. However, when an important event gets reported, readers cannot rule out the occurrence of the other more usual events.
+    Additionally, a reader getting the same information by two different media outlets could make different conclusions about the state of the world (example with biased newspaper and politician).
+    \item An important implication of Proposition 2 is the fact that an issue covering less newsworthy events allows to rule out more states than an issue covering more newsworthy events. Indeed, when a reader sees stories about various companies and their everyday business, he knows that no major event occurred. However, when an issue allocates an important portion of its space to a major event, the reader cannot rule out the occurrence of the other more mundane events. (Added by myself: This should lead to an increase in uncertainty which is a good point to link to Veldkamp and mutual fund attention allocation. Also, \textcite{Veldkamp2006a} [figure 3 p. 836] shows that when unconditional payoff variance [uncertainty about ???\todo{check this}, as per \textcite{Veldkamp2006}] increases, agents want to receive more signals. This could be understood as "agents could use more signals because the ones they are provided with by the information provider through the news selection function do not allow them to rule out many state of the world.)
+    \item They show that, for an event reported by all news sources to be considered common knowledge, it must also be considered maximally newsworthy by those some sources. This has implication in whether information is considered public or private, as common knowledge is stronger than public information. This has importance in game theory and probably even here, but I don't fully understand the argument. I will then leave it aside for the time. (Papers to mention are listed on page 163)
+    \item They augment the beauty contest model of \textcite{Morris2002} by incorporating delegated information choice and show that agents take more correlated actions than they would if they were to choose ex-ante what to learn about.
+    \item Similar to agents in rational inattention models in that they cannot observe to full state of the world (Sims (2003), Mackowiack and Wiederholt (2009,2010), Matejka (2015), Matejka and McKay (2015))
+    Also, the editorial function of information suppliers complement other features of news media studied previously: information as a non-rival good and markets for information that introduce economies of scale in information supply (\textcite{Veldkamp2006} and \textcite{Veldkamp2006a}).
+    \item Different from literature in previous point in that agent do not choose ex-ante what to get information about depending on the expected usefulness of a signal. Here agents get information from a information provider who observes/monitor a vast set of possible events and decides what is worth reporting after the state of the world has realized (ex-post).
+    Also, different from rational inattention models in that agents are constrained only by the number of articles and/or newspaper issues they are able to read. No constraint is put on the entropy reduction of their posterior belief. In other words, there is no constraint on how informative an article can be. An agent would use the same resources to read a highly informative article ($H(X)-H(X|Y)=H(X)$ or total reduction in posterior entropy) as he would to read a highly uninformative article ($H(X|Y)=H(X)$ or no reduction in entropy)
+\end{itemize}
+
+Related literature can be found on page 164 if needed.
+
+
+% ----------------------------------------------------------------------
+\clearpage
+\section{Information Choice}
+
+In rational expectation models and most of the classical economic theory, agents are omniscient and optimal choice makers. Meaning that those agents always know what game they are playing, what state of the world they are in, the possible actions and payoffs of other players in every state of the world, as well as their owns. By making a distinction between public and private information, as well as introducing costly information, noisy rational expectation models went a few step forward bringing the economic literature closer to the nature of real-world agents. Information choice theory is yet another step in the direction of modeling economic agents as human beings with limited mental capacity, who try to allocate this scarce resource to learn about what is most useful to them. This allows to model situation in which agents cannot use all the information available to them, even if that information were to be available to them at no charge. This is akin to what investors experience nowadays when information is abundant and often available for cheap. The challenge is more often to identify what is most worthy of our attention, rather than digging to find that additional piece of information.
+
+\vspace{1cm}
+
+In the light of information theory, some of the "stylized facts" of stock returns that would otherwise be deemed a consequence of irrational investors (e.g. excess volatility or correlation) can be explained while maintaining the assumption of rational agents. However, such models are difficult to test empirically since investors' information is hardly ever directly observable. 
+
+
+\subsection{A word on (noisy-)rational expectation models?}
+Rational expectation models
+The workhorse model used in the financial economic literature to study portfolio choices and asset pricing is the constant absolute risk aversion utility model. Early work with this model includes Grossman(1975) \todo{add Kyle 1985}, \textcite{Grossman1980}, Hellwig (1980) \todo{add Hellwig(1980)} and \textcite{Admati1985}. An important strand of literature have developed on these models, offering variations 
+
+
+
+The two types of model that have been studied in the financial economic literature are coordination games (\cite{Morris2002}) and ... Not sure this is correct as GS is also a coordination game. Maybe I should differentiate between complement and substitute.
+
+\subsection{GS 1980}
+
+
+%---------------------------------------------------------------------------
+\clearpage
+\subsection{\textcite{Veldkamp2006}}
+Unlike physical goods, information is a non-rival good (i.e. the fact that someone has access to it does not prevent others to also have access to it).
+What makes information different, as a good, is the fact that is cheap to reproduce and has a high fixed-cost of discovery. \todo{cite and add Romer (1990) to bibliography}
+Contrary to goods in fixed-supply, the market price of information falls with an increase in demand. This is the case in competitive markets where information providers maximize their profit by varying quantity and not price.
+There is free entry in the information market.
+Example of price of one issue of The Wall Street Journal, the Economist, Econometrica, and an analyst's report. As the information gets more precise, its audience decline and its price increases. This is due to the fact that there is a fixed cost to uncovering information (one can think about the salary of the analyst or the journalist). This fixed cost is then spread over a large audience (Wall Street Journal) hence driving the price of one issue down. On the other hand, the analyst's report is often distributed to a limit audience and its price is high. \todo{Check Veldkamp book for better explanation and examples.}
+
+\textcite{Veldkamp2006} uses the canonical model from \textcite{Grossman1980} with constant information price, and adds a competitive market for information production to it, making information price an endogenous variable. In this setting, information affects asset prices as in \textcite{Grossman1980}, but asset markets also affect information price through changes in information demand. She shows that in one equilibrium as more agents decide to learn about assets, information price declines and asset prices rise. In an other equilibrium, where agents do not learn, information price is high and asset prices are low. These observations confirm that high demand for information drives information price down and vice-versa. Also, it shows that agents require higher expected returns (lower prices) for assets they are more uncertain about. However, this does not mean that information will always drive prices up. Indeed, if information predicts low returns, an asset price might be lower with information than without. The point is that, on average, information reduces the conditional variance of asset payoffs. Hence, once, again, lower uncertainty commands lower expected payoffs and thus higher prices.
+
+Page 19 and 21 from \textcite{Veldkamp2006} on why one single source of news is good enough and what type of information are WSJ articles capturing/conveying. \todo{Read Nimark and then complete this.}
+Also, review conclusion from \textcite{Veldkamp2006} and say something about "media frenzies" (not sure yet how important the concept of media frenzies is).
+
+
+
+%---------------------------------------------------------------------------
+\clearpage
+\subsection{\textcite{Veldkamp2006a}}
+
+\textcite{Veldkamp2006a} show that in equilibrium comovement of asset payoffs is a consequence of the kind of information investors buy. The paper derives a micro-economic theory of competitive information market to show this.
+
+
+
+
+
+
+
+
+
+%---------------------------------------------------------------------------
+\clearpage
+\subsection{\textcite{Kacperczyk2016}}
+\cite{Kacperczyk2016} is the updated and republished version of \cite{Kacperczyk2012}.\todo{cite as one}
+
+They present a model that uses the business cycle to predict information choice and then link those choices to patterns in mutual funds' portfolio construction and returns.
+
+The fact that they use the state of the business cycle as an observable variable and describe the behavior of institutional investors towards information acquisition is quite useful to me. I am not so much interested in the part related to portfolio construction, as I do not consider bundles of stocks in this project. Rather, what is interesting is the kind of signals investors choose to learn about and the impact this information has on the comovement of stock prices and their returns.
+
+
+Six main prediction from model
+\begin{itemize}
+    \item How volatility and price of risk each affect attention allocation, portfolio dispersion and portfolio returns
+    \item Prediction 1-2: Attention should be reallocated over the business cycle. The rise in aggregate volatility in recessions should draw more attention as it is more valuable to focus on more uncertain outcomes. This is exacerbated by an elevated price of risk. We can explain this by the fact that aggregate shocks have an impact on a larger portion of the portfolio. Hence, in times where both price of risk and aggregate volatility are high, it pays more to reduce uncertainty at the aggregate portfolio level rather than at the individual stock level (stock-specific risk).
+    \item On the behavior side, they predict that in recession (when aggregate vola + risk price are high), asset payoffs due to comove more because of larger aggregate shocks. Hence, passive investment returns will also comove more. However, since skilled fund/portfolio managers act according to what they learn, their returns will comove less in recession.
+\end{itemize}
+
+Model
+\begin{itemize}
+    \item A fraction of fund managers are skilled
+    \item principal component decomposition of signal structure. Managers do not learn about asset payoffs, they learn about risk factor payoffs, where risk factors are linear combination of asset payoffs. This allows to treat risk factors as being uncorrelated when the underlying asset payoffs might well be correlated, hence simplifying the math and making to model more tractable even offering a closed form solution under some assumptions.
+    \item aggregate signals = macroeconomic data, stock-specific signals = firm-level fundamental data (dividends, cash flows, etc.) independent from aggregate shocks
+    \item When aggregate volatility and the price of risk are added to the model, they (those two forces) both govern attention allocation.
+    \item 1 riskless and n-1 risky assets. Nth asset is a composite asset (linear combination) that has no stock-specific shocks (i.e. it is an index).
+    \item Because of strategic substituability in in information acquisition, it is worth learning about a risk/shock when the utility of doing so is high. As more investors learn about the same risk, its marginal utility goes down until reaching an equilibrium where investors are indifferent between learning about that risk or not. This is due to the fact that information is reflected in the asset price, hence, the more investors are informed about a specific risk the more the asset price will be informative and other investors will not have to use their limited capacity to learn on their own. Similarly, when only few investors learn about a specific shock/risk, the marginal utility of doing so will be high. Marginal utility also increases with the volatility of a shock. The more volatile a shock is, the more useful it will be to learn about it. This explains why agents learn all learn about aggregate shocks in recession.
+\end{itemize}
+
+Data
+\begin{itemize}
+    \item In the data, recessions are periods when aggregate volatility and the price of risk rise (They don't explicitly measure or define price of risk).
+    \item Dispersion of fund managers' portfolio returns increases in recession. Consistent with model.
+    \item Each month, they estimate a CAPM equation on a 12-month rolling window, for each stock. Individual stocks' $\beta^i_t$ and residual standard deviation $\sigma^i_{\epsilon t}$ are computed.
+    \item Aggregate risk for stock $i$ in month $t$ is measured as $|\beta^i_t \sigma^m_t|$, where $\sigma^m_t$ is monthly realized volatility of the market computed from daily returns.
+    \item Idiosyncratic risk is $\sigma^i_{\epsilon t}$
+    \item They then compute the average stock's aggregate risk: $\frac{1}{N} \sum_{i=1}^N |\beta^i_t \sigma^m_t|$, the average idiosyncratic risk: $\frac{1}{N} \sum_{i=1}^N \sigma_{\epsilon t}^i$, and a ratio of the two. They regess those measures against market premium, SMB, HML,UMD and a constant. (Table 1)
+\end{itemize}
+
+Results
+\begin{itemize}
+    \item Fund managers (optimally) choose to learn about aggregate shocks in recessions and idiosyncratic shocks in expansions.
+    \item \cite{Ang2002}, \cite{Ribeiro2002}, \cite{Forbes2002} documented the excess comovement of stocks in downturns. \cite{Kacperczyk2016} mention that this is consistent with the higher systematic risk that stocks carry in recessions. 
+    \item More literature about higher volatility in downturns can be found in section 3.2
+\end{itemize}

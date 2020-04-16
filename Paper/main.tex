@@ -1,0 +1,72 @@
+\documentclass[12]{report} % Check size according to HSG requirements
+\usepackage[utf8]{inputenc}
+
+% Images
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+% Bibliography
+\usepackage[style=apa, sorting=anyt, backend=biber]{biblatex}
+\addbibresource{master_thesis.bib}
+
+% Math
+\usepackage{amsmath}
+
+% Package for code snippets
+\usepackage{minted}
+%\usemintedstyle{borland}
+
+% Temp packages (to be removed)
+\usepackage[colorinlistoftodos]{todonotes} % to-do's
+\usepackage{soul} % text highlighting
+
+\title{
+{Thesis Title}\\
+{\large HSG}
+}
+\author{Danilo Zocco}
+\date{18 May 2020}
+
+\begin{document}
+
+\maketitle
+
+\listoftodos
+
+\todo{Fix the way references appear in the text}
+\todo{Veldkamp's "A rational theory of mutual funds' attention allocation" might be better than "Over the cycle". Kind of an extension}
+\todo{A reference for entropy is the book of Cover and Thomas 2006)}
+\todo{Go through conclusion of \textcite{Nimark2019} as it contains useful stuff to mention, especially last paragraph.}
+\todo{Sort bibliography alphabetically, but careful with Veldkamp a \& b}
+
+
+\chapter*{Declaration}
+\chapter*{Acknowledgements}
+
+\tableofcontents
+
+\chapter{Introduction}
+\input{chapters/introduction}
+
+\chapter{Framework}
+\input{chapters/framework}
+
+\chapter{Methodology}
+\label{chap:methodology}
+\input{chapters/methodology}
+
+\chapter{Results}
+\input{chapters/results}
+
+\chapter{Conclusion}
+\input{chapters/conclusion}
+
+\clearpage
+\printbibliography
+\clearpage
+
+\appendix
+\chapter{Data}
+\input{chapters/appx_data}
+
+\end{document}

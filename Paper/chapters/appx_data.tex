@@ -1,0 +1,16 @@
+\section{Exporting RPNA data from WRDS}
+
+The RavenPack News Analytics dataset is split by year and by product in the WRDS database. Hence, the source table in the code below (DJ\_EQUITIES\_2000) needs to be changed for each year, and EQUITIES needs to be replaced by GLOBAL\_MACRO for non-equity stories. This amounts to a total of 40 tables to then export in CSV format.
+
+\begin{listing}[ht]
+\inputminted[frame=lines, linenos]{sas}{code/RPNA_export.txt}
+\caption{SQL procedure run in SAS Studio to export RPNA tables from WRDS Cloud}
+\label{snippet:RPNA}
+\end{listing}
+
+% ---------------------------------------------
+\section{Tables Schema}
+
+Decide whether to include all columns or only the ones that were actually used. Also, is it better to provide a table or the code used to create the tables? And, to what extent should I describe the process from of import from CSV to SQL Server tables? To what extent should I describe the columns that I don't use (I already reference the official CRSP documentation)?\todo{I would not describe what I did not use as it produces tables that don't fit on a page.} RPNA documentation is only available to clients. \todo{Clarify this before doing more work.}
+
+%\input{tables/test_table}

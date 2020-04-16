@@ -1,0 +1,66 @@
+\section{Correlation}
+
+\begin{itemize}
+    \item use realized volatility and correlations instead of standard historic vola and corr.
+\end{itemize}
+
+\section{Unusual Events}
+I need a empirical/econometric/measurable measure/indicator of major events. Also, a way to distinguish between good and/or bad major events. Btw, we suppose that good major events do not get the same coverage as bad major events (could this be somehow explained by risk aversion? or price of risk or something similar?).
+
+\begin{itemize}
+    \item Various regressions (correlations, price movement, news count, etc.)
+    \item Topic concentration as an alternative to equity/macro news. If one topic is covered more, then it is more important. Refer to \textcite{Nimark2019} (section 2.6 p.171) for more details.
+    \item Other, more complicated, idea: stories that are first reported in DJ-edition in outlet $\neq$ WSJ are considered important events if they are also subsequently reported in WSJ. Otherwise, not that important. Also \textcite{Nimark2019} mention excluding news from wires as they are target to other information providers. Hence we can consider the stories from DJ Newswires to be the set of all stories that can be reported and WSJ selects the most newsworthy among them. But what would that show for me? How can I use that?
+    \item Inspiration for major events (https://theirrelevantinvestor.com/wp-content/uploads/2020/01/reasons-to-sell.png)
+    \item superimpose with Surveys of Consumers (https://data.sca.isr.umich.edu/data-archive/mine.php)
+\end{itemize}
+
+\subsection{An idea for measuring unusual events}
+\textcite{Nimark2014} formally defines unusual events in its Definition 1\footnotemark. I summarize the definition without proof.
+
+\noindent Let $x'$ and $x''$ be two outcomes of an event $x$, and let $S$ be an indicator variable equal to 1 when $x$ gets reported and 0 otherwise. Then, the realization $x'$ is an unusual event if the below equations hold: \todo{Nimark actually refers to signals and not events. Might be worth rewriting correctly.}
+
+\footnotetext{\textcite{Nimark2014} refers to unusual events as "man-bites-dog" events. This is in reference to the journalistic adage that "dog bites man" is less newsworthy than "man bites dog", and the former is therefore less likely to be reported than the latter. For examples of real-life use, see https://en.wikipedia.org/wiki/Man\_bites\_dog}
+
+\begin{align}
+\begin{split}
+p(x') &< p(x'') \\
+p(S=1|x') &> p(S=1|x''). \nonumber
+\end{split}
+\end{align}
+
+\noindent In other words, an unusual event is one for which the less probable outcome is the most likely to be reported.
+
+Based on this definition, we could imagine a way to measure how unusual a day is by looking at shifts in the distribution of coverage for various topics.
+This assumes that the happening of an unusual event would abnormally increase the coverage for this topic while reducing the coverage for other more common topics.
+If topic coverage is measured as 
+
+\begin{align}
+\begin{split}
+C_{k,t} = \frac{c_{k,t,}}{S_t}= \frac{1}{S_t} \sum_{s=1}^{S_t} I(s \in k)
+\end{split}
+\end{align}
+
+\noindent where 
+
+\subsection{Modeling unusual events}
+
+
+
+
+
+
+\subsection{Motivating Fact(s): XYZ}
+I can test here some "preliminary" assumptions. Those are assumptions that are secondary but need to hold (are assumed to hold) for the other hypotheses to be tested or meaningful.
+In other words, here I can test that my assumptions hold and in later subsections I can test my main hypotheses.
+
+\begin{itemize}
+    \item Topic coverage varies over time
+    \item Topics come and go
+    \item Extreme and sudden change in topic coverage signals a major event
+    \item 
+\end{itemize}
+
+\subsection{Testing hypothesis 1}
+\subsection{Testing hypothesis 2}
+\subsection{Testing hypothesis 3, etc.}

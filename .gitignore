@@ -3,6 +3,9 @@
 *.bak
 *.xlsx
 
+# R and JupyterLab
+.Rhistory
+
 # SSMS solutions
 *.ssmssqlproj
 *.ssmssln

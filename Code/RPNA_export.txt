@@ -1,0 +1,14 @@
+PROC SQL;
+
+CREATE TABLE DJ_EQ_2001 AS
+	SELECT *
+	FROM RPNA.DJ_EQUITIES_2001
+	WHERE SOURCE = 'AA6E89';
+	
+/*
+ 'AA6E89' is the ID of the Wall Street Journal
+ in the RPNA universe.
+*/
+		
+RUN;
+QUIT;

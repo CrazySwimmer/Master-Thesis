@@ -1,9 +1,18 @@
-\section{Data}
-\subsection{Financial Data}
+From 2001-01-01 to 2019-08-31.
+
+\section{Financial Data}
 CRSP etc.
 
-\subsection{Newspaper Articles}
+\section{Newspaper Articles}
 RPNA etc.
 
-\subsection{Companies matching}
+Timestamp are reported UTC, a first transformation was to convert the timestamps to America/New\_York in order for the dates to be consistent with the local time at which the Wall Street Journal publishes its daily issue.
+
+An issue with RPNA is that the timestamp of the articles are not from the news source but from the time the news was recorded by RavenPack. As a consequence, the stories from the Wall Street Journal are spread over twenty-four hours even though it is a daily print newspaper. We therefore need to define a cutoff time to include articles on one day or the next. For example, an article with a timestamp around noon would be considered having been reported the same day, and an article with a timestamp around 3am is considered as being reported on the previous day.
+
+Also, we assume that over 20 years, the way RavenPack receives and processes news articles might have changed and therefore our cutoff method may be correct only for part of the period.
+
+\todo{Decide how to cut off timestamp. Effective time vs processing time.}
+
+\section{Companies matching}
 A word on matching?

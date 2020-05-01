@@ -1,4 +1,30 @@
 \section{Correlation}
+In order to measure the impact of macro news on the correlation of stock returns, we need a measure of correlation that captures...
+
+An issue that we faced is that we want
+
+
+
+We want to see changes in correlation on a daily basis, we therefore need a measure of daily correlation. Additionally, we need a way to summarize the pairwise correlation between all constituents of the S\&P 500.
+
+Financial time series with daily observations do not offer a straightforward way of doing so. There
+
+
+\subsection{Daily intraday correlations from Trade and Quote (TAQ) data}
+We compute intraday pairwise correlations as
+
+$$
+    \rho^{ij}_t = \frac{COV(r_t^i,r_t^j)}{SD(r_t^i)SD(r_t^j)},
+$$
+
+where $r_i$ are the intraday returns of stock $i$ with frequency $m$ (not written, tbd 1 to 15 minutes), $\rho_t^{ij}$ is the intraday pairwise correlation of stocks $i$ and $j$.
+
+We can then compute
+$$
+    \bar{\rho}_t = \frac{1}{N(N-1)} \sum_{i,j}^{N} \rho^{ij}_t, \; \; \;
+    \forall i\ne j,
+$$
+where $\bar{\rho}_t$ is the mean of pairwise correlations on day $t$. We exclude correlations of stocks with themselves and therefore the sum gets divided by $N(N-1)$. The reason for doing so is that adding 500 correlations of 1 would bias the average towards 1.
 
 \begin{itemize}
     \item use realized volatility and correlations instead of standard historic vola and corr.
@@ -55,12 +81,14 @@ I can test here some "preliminary" assumptions. Those are assumptions that are s
 In other words, here I can test that my assumptions hold and in later subsections I can test my main hypotheses.
 
 \begin{itemize}
+    \item Correlations increase with down market (regress avg.corr on S\&P 500 daily returns!)
     \item Topic coverage varies over time
     \item Topics come and go
     \item Extreme and sudden change in topic coverage signals a major event
-    \item 
 \end{itemize}
 
 \subsection{Testing hypothesis 1}
+
+
 \subsection{Testing hypothesis 2}
 \subsection{Testing hypothesis 3, etc.}

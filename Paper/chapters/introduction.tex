@@ -1,3 +1,31 @@
+\todo{Add a quote about Bayes' theorem in intro.}
+
+
+“What information consumes is rather obvious: It consumes the
+attention of its recipients. Hence a wealth of information creates a
+poverty of attention, and a need to allocate that attention efficiently
+among the overabundance of information sources that might
+consume it.”
+Herbert Simon (1971)
+
+
+Try to fit Keynes' quote:
+‘‘… professional investment may be likened to those newspaper competitions in which the competitors have to pick out the six prettiest faces from a hundred photographs, the prize being awarded to the competitor whose choice most nearly corresponds to the average preferences of the competitors as a whole; so that each competitor has to pick, not those faces which he himself finds prettiest, but those which he thinks likeliest to catch the fancy of the other competitors, all of whom are looking at the problem from the same point of view. It is not a case of choosing those which, to the best of one’s judgement, are really the prettiest, nor even those which average opinion genuinely thinks the prettiest. We have reached the third degree where we devote our intelligences to anticipating what average opinion expects the average opinion to be. And there are some, I believe, who practise the fourth, fifth and higher degrees.’’ Keynes (1936), page 156.
+
+
+“It is not a case of choosing those [faces] which, to the best of one’s judgment, are really
+the prettiest, nor even those which average opinion genuinely thinks the prettiest. We have
+reached the third degree where we devote our intelligences to anticipating what average opinion expects the average opinion to be. And there are some, I believe, who practise the fourth,
+fifth and higher degrees.” Keynes, General Theory of Employment Interest and Money, 1936
+
+
+The beauty contest concept is issued not for asset pricing but for newspapers content (cf. Nimark)
+
+
+As Shiller put it in his 2000 paper "Do ....", stocks volatility tends to be higher than what is predicted by the volatility of fundamentals. There is a broad literature (sources!) that tries to explain what is now called the "excess volatility puzzle". A related phenomenon attracted attention (at some point...), assets prices and their returns tend to comove more than expected by the comovement of their fundamentals.
+
+
+
 \section{High level intro w/ most important/interesting findings/results}
 \section{Description of paper content and summary of main results, by section}
 
@@ -32,4 +60,20 @@ A suggested explanation for excess comovement has been that it is due to institu
 
 In the literature about assets pricing, portfolio formation and information choice \textcite{VanNieuwerburgh2010} do not allow agents to choose between idiosyncratic or aggregate information. \textcite{Mondria2010} uses only two risky assets, as a consequence all shocks are aggregate. \textcite{Kacperczyk2016} allow for N risky assets and a more general information structure, via a principal component decomposition of the signal structure.
 
-This project pulls together material from three different but somewhat related strands of the economic literature. 
+This project pulls together material from three different but somewhat related strands of the economic literature.
+
+\subsubsection{Measure of asymmetric correlation}
+In the literature, asymmetric correlation refers to the fact that stock returns correlations tend to be higher in down market than in up\todo{up?} markets. We however focus not directly on thee direction of the market. We are more interested by the changes in correlations due to news.
+
+
+In the literature, asymmetric correlation is often measured through models of the GARCH family (DCC, GARCH-M, regime-switching GARCH to mention a few popular ones). A few papers have tried different approaches.
+
+Ang \& Chen (2002) develop a non-parametric measure of conditional correlation based on correlation behavior in the tails of the returns distribution. They define downside movements as those where both the market and an equity portfolio return are below pre-set levels. They find that downside correlation is higher than predicted by a normal distribution of returns and that upside correlation cannot be statistically distinguished from that predicted by a normal distribution. These results are similar to Longin \& Solnik (2001), who use extreme value theory to measure excess correlations in the tails of returns distribution of international equities. A term often used in this strand of literature is "exceedance correlation".
+
+Forbes and Rigobon (2002) use a VAR model to measure cross-market correlations. They find that excess correlation is conditional on high volatility and that unconditional correlations are not higher in downturns than they are in normal times.
+
+Gastaldi \& Nardecchia (2003) use a Kalman filter approach to estimate conditional time-varying beta of Italian industries.
+
+Barberis, Shleifer \& Wurgler (2005) compare the beta of stock returns and the $R^2$ of a typical regression before and after a stock gets included in the S\&P 500. They find significant evidence of increased comovement after the inclusion and of significant decrease after the exclusion.
+
+Deng (2016) proposes a modified state-space version of Kendall's tau and finds marginal evidence of asymmetric state-dependent comovement.

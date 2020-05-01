@@ -14,3 +14,38 @@ The RavenPack News Analytics dataset is split by year and by product in the WRDS
 Decide whether to include all columns or only the ones that were actually used. Also, is it better to provide a table or the code used to create the tables? And, to what extent should I describe the process from of import from CSV to SQL Server tables? To what extent should I describe the columns that I don't use (I already reference the official CRSP documentation)?\todo{I would not describe what I did not use as it produces tables that don't fit on a page.} RPNA documentation is only available to clients. \todo{Clarify this before doing more work.}
 
 %\input{tables/test_table}
+
+%----------------------------------------------
+\begin{landscape}
+
+\section{Trade and Quote Data}
+\label{appx:taq}
+
+Table \ref{table:appx_taq_corr} is reproduced from page 19 of the TAQ 3 User's Guide (\cite{TAQUserGuide}).
+
+\begin{table}
+\centering
+
+\begin{tabular}{l|c|l|}
+    \cline{2-3}
+	 & Code & Description \\
+    \hline
+    \multirow{3}{*}{Good Trades} & 0 & Regular trade that was not corrected, changed, or signified as cancel or error \\
+     							 & 1 & Original trade which was later corrected. This record contains the original time and the corrected data for the trade \\
+                                 & 2 & Symbol correction (out of time sequence) \\
+    \hline
+	\multirow{3}{*}{Original trade records} & 7 & Trade cancelled due to error \\
+     							            & 8 & \textbullet Trade cancelled \\
+                                            & 9 & Trade cancelled due to symbol correction \\
+    \hline
+    \multirow{3}{*}{Correction instructions} & 10 & Cancel record (associated with 8) \\
+     							             & 11 & Error record (associated with 7) \\
+                                             & 12 & Correction record (associated with 1; contains corrected time and original data) \\
+    \hline
+\end{tabular}
+
+\caption{Correction Indicator. TAQ shows only the original trade and final correction. No interim corrections are shown.}
+\label{table:appx_taq_corr}
+\end{table}
+
+\end{landscape}

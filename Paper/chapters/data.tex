@@ -1,7 +1,32 @@
 From 2001-01-01 to 2019-08-31.
 
 \section{Financial Data}
-CRSP etc.
+\begin{itemize}
+    \item CRSP for S\&P 500 constituents over time
+    \item TAQ for intraday prices
+    \item FRED for T-Bill/LIBOR
+    \item Yahoo Finance for S\&P 500 adjusted close data
+\end{itemize}
+
+\subsubsection{Trade and Quote}
+In order to estimate intraday correlation, we use trade data from the NYSE Trade and Quote (TAQ) database. The TAQ database offers intraday data at the transaction level for securities listed on the major American exchanges (NYSE, AMEX and NASDAQ). We transform unequally-spaced transaction data to time series of 1-minute interval prices for the 500 companies included in the index each month. However, high-frequency data on security prices is prone to noise and errors. This is particularly inconvenient in our case since we need to measure approximately 125'000 pairwise correlations on each day.\todo{Review literature in BarndorffNielsen2009} Excessive noise would reduce the quality of our aggregate measure of daily correlation in the market. We therefore need a procedure for cleaning the data before using it further. We follow section 3 of \textcite{BarndorffNielsen2009} and apply the following filters (the codes in square brackets refers to the original paper):
+
+\begin{itemize}
+    \item Keep entries with a time stamp inside the core market open hours (9:30 to 16:00) [P1]
+    \item Keep entries with a transaction price higher than zero [P2]
+    \item Discard entries with corrected trades [T1]
+    \item Discard entries with abnormal "Sale Condition" [T2]
+    \item Take the median of prices within the same minute [T3]
+\end{itemize}
+
+P1 ensures we do not include trades taking place within the pre- and after-market trading hours. P2 ensure we do not have negative prices or prices equal to zero. By taking only entries with a correction indicator equal to zero, T1 ensures we do not include trades that were later either canceled or corrected. Table \ref{table:appx_taq_corr} in appendix \ref{appx:taq} lists all correction codes that can be assign to a entry. Sale Condition is a variable that marks trades with "abnormal conditions". We exclude all sale condition except "E" and "F". \todo{Add column descriptions or table schema in Appendix}. Finally, since there are often more than one trade taking place each minute, T3 is a robust way to set a price. A mean or last price would be affected by outliers.
+
+
+
+
+
+
+
 
 \section{Newspaper Articles}
 RPNA etc.

@@ -1,9 +1,16 @@
+
+% Document layout
 \documentclass[12]{report} % Check size according to HSG requirements
+\usepackage[a4paper]{geometry} % Check docu for margin, footer, etc.
+\usepackage{pdflscape} % To pivot single pages
 \usepackage[utf8]{inputenc}
 
 % Images
 \usepackage{graphicx}
 \graphicspath{{images/}}
+
+% Tables
+\usepackage{multirow}
 
 % Bibliography
 \usepackage[style=apa, sorting=anyt, backend=biber]{biblatex}
@@ -43,31 +50,36 @@
 
 
 \chapter*{Declaration of Authorship}
-\input{chapters/declaration}
+    \input{chapters/declaration}
 
 \chapter*{Acknowledgements}
 
 \tableofcontents
+\todo{Later on, merge literature review to become Excess Com. + Asym. Corr and Info choice + deleg. info choice}
 
 \chapter{Introduction}
-\input{chapters/introduction}
+    \input{chapters/introduction}
+    
+\chapter{Literature Review}
+    \label{chap:literature}
+    \input{chapters/literature}
 
 \chapter{Framework}
-\input{chapters/framework}
-
-\chapter{Data}
-\label{chap:data}
-\input{chapters/data}
+    \input{chapters/framework}
 
 \chapter{Methodology}
-\label{chap:methodology}
-\input{chapters/methodology}
+    \label{chap:methodology}
+    \input{chapters/methodology}
+
+\chapter{Data}
+    \label{chap:data}
+    \input{chapters/data}
 
 \chapter{Results}
-\input{chapters/results}
+    \input{chapters/results}
 
 \chapter{Conclusion}
-\input{chapters/conclusion}
+    \input{chapters/conclusion}
 
 \clearpage
 \printbibliography

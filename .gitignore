@@ -2,6 +2,7 @@
 *.pdf
 *.bak
 *.xlsx
+*.zip
 
 # R and JupyterLab
 .Rhistory

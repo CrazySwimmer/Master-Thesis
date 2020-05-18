@@ -8,7 +8,10 @@
 .Rhistory
 
 # SSMS solutions
+Code/backup_routine.sql
 *.ssmssqlproj
 *.ssmssln
 *.vs
-Code/backup_routine.sql
+
+# Jupyter Lab
+Code/.ipynb_checkpoints

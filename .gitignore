@@ -15,3 +15,10 @@ Code/backup_routine.sql
 
 # Jupyter Lab
 Code/.ipynb_checkpoints
+
+
+# Other
+Tables/
+Figures/
+Misc/
+Data/
